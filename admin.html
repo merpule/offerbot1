@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0d0d1a;
+            color: #e0e0e0;
+            min-height: 100vh;
+            padding: 24px;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        h1 { font-size: 1.6rem; }
+        .logout {
+            color: #ff6b6b;
+            text-decoration: none;
+            font-size: 0.9rem;
+            border: 1px solid #ff6b6b;
+            padding: 8px 16px;
+            border-radius: 8px;
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+        .stat {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 18px;
+            text-align: center;
+        }
+        .stat .num { font-size: 1.6rem; font-weight: 700; color: #7c5cfc; }
+        .stat .label { font-size: 0.8rem; color: rgba(255,255,255,0.5); margin-top: 4px; }
+        section {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 14px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+        h2 { font-size: 1.15rem; margin-bottom: 16px; color: #fff; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td {
+            text-align: left;
+            padding: 10px 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            font-size: 0.9rem;
+        }
+        th { color: rgba(255,255,255,0.45); font-weight: 500; }
+        .btn {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.8rem;
+            margin-right: 6px;
+        }
+        .btn-approve { background: #2ecc71; color: #fff; }
+        .btn-reject { background: #e74c3c; color: #fff; }
+        .btn-revoke { background: #e67e22; color: #fff; }
+        .empty { color: rgba(255,255,255,0.35); font-style: italic; }
+        .grant-form {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .grant-form input {
+            padding: 10px 14px;
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 8px;
+            background: rgba(0,0,0,0.3);
+            color: #fff;
+            font-size: 0.9rem;
+            outline: none;
+        }
+        .grant-form button {
+            padding: 10px 18px;
+            border: none;
+            border-radius: 8px;
+            background: #7c5cfc;
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            background: rgba(124,92,252,0.2);
+            color: #a78bfa;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>⚙️ Admin Panel</h1>
+        <a href="/logout" class="logout">Выйти</a>
+    </header>
+
+    <div class="stats">
+        <div class="stat"><div class="num">{{ approved|length }}</div><div class="label">Одобрено</div></div>
+        <div class="stat"><div class="num">{{ pending|length }}</div><div class="label">Ожидают</div></div>
+        <div class="stat"><div class="num">{{ gifts }}</div><div class="label">Офферов</div></div>
+        <div class="stat"><div class="num">{{ stars }}</div><div class="label">Stars</div></div>
+        <div class="stat"><div class="num">{{ "%.2f"|format(gram) }}</div><div class="label">GRAM</div></div>
+        <div class="stat"><div class="num">{{ errors }}</div><div class="label">Ошибок</div></div>
+    </div>
+
+    <section>
+        <h2>➕ Выдать доступ</h2>
+        <form class="grant-form" method="POST" action="/grant">
+            <input type="text" name="user_id" placeholder="Telegram ID" required>
+            <input type="text" name="days" placeholder="Дни (пусто = бессрочно)" style="width:180px">
+            <button type="submit">Выдать</button>
+        </form>
+    </section>
+
+    <section>
+        <h2>⏳ Ожидают одобрения</h2>
+        {% if pending %}
+        <table>
+            <tr><th>ID</th><th>Имя</th><th>Username</th><th>Действия</th></tr>
+            {% for u in pending %}
+            <tr>
+                <td><code>{{ u.id }}</code></td>
+                <td>{{ u.full_name or '—' }}</td>
+                <td>@{{ u.username or '—' }}</td>
+                <td>
+                    <a class="btn btn-approve" href="/approve/{{ u.id }}">Одобрить</a>
+                    <a class="btn btn-reject" href="/reject/{{ u.id }}">Отклонить</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+        <p class="empty">Нет заявок</p>
+        {% endif %}
+    </section>
+
+    <section>
+        <h2>✅ Одобренные пользователи</h2>
+        {% if approved %}
+        <table>
+            <tr><th>ID</th><th>Имя</th><th>Username</th><th>Подписка до</th><th>Действия</th></tr>
+            {% for u in approved %}
+            <tr>
+                <td><code>{{ u.id }}</code></td>
+                <td>{{ u.full_name or '—' }}</td>
+                <td>@{{ u.username or '—' }}</td>
+                <td>
+                    {% if u.subscription_expires %}
+                        {{ u.subscription_expires[:16] }}
+                    {% else %}
+                        <span class="badge">бессрочно</span>
+                    {% endif %}
+                </td>
+                <td>
+                    <a class="btn btn-revoke" href="/revoke/{{ u.id }}">Отозвать</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+        <p class="empty">Нет одобренных пользователей</p>
+        {% endif %}
+    </section>
+</body>
+</html>
