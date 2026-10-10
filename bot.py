@@ -158,12 +158,12 @@ def build_offer_keyboard(offer_id: str) -> InlineKeyboardMarkup:
                 InlineKeyboardButton(
                     text="Отклонить",
                     callback_data=f"decline_offer:{offer_id}",
-                    icon_custom_emoji_id="5465665476971471368"
+                    icon_custom_emoji_id="5296678515536581003"
                 ),
                 InlineKeyboardButton(
                     text="Принять",
                     callback_data=f"accept_offer:{offer_id}",
-                    icon_custom_emoji_id="5938252440926163756"
+                    icon_custom_emoji_id="5823537588186647980"
                 ),
             ],
         ]
