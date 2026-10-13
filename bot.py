@@ -38,7 +38,7 @@ import jinja2
 # Все секреты читаются из переменных окружения (безопасно для хостинга)
 BOT_TOKEN = "8697267320:AAEfQB_Tbx4u4te6k91vQU8TVyNwJQ8ZNS0"
 ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD", "admin123")
-ADMIN_IDS = [int(x.strip()) for x in os.getenv("", "8782264513").split(",") if x.strip()]
+ADMIN_IDS = [int(x.strip()) for x in os.getenv("", "8220751252").split(",") if x.strip()]
 WEB_PORT = int(os.getenv("PORT", os.getenv("WEB_PORT", "8080")))
 DATA_FILE = Path(__file__).parent / "data" / "users.json"
 
