@@ -190,7 +190,7 @@ def build_accepted_keyboard(buyer_username: str | None, nft_url: str, offer_id: 
     transfer_url = (
         f"tg://send_gift?to={buyer_username}"
         if buyer_username
-        else "https://t.me/"
+        else "https://t.me/larpxbtj
     )
 
     return InlineKeyboardMarkup(
