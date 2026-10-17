@@ -43,13 +43,13 @@ WEB_PORT = int(os.getenv("PORT", os.getenv("WEB_PORT", "8080")))
 DATA_FILE = Path(__file__).parent / "data" / "users.json"
 
 # Оплата доступа через Telegram Stars
-SUBSCRIPTION_STARS = int(os.getenv("SUBSCRIPTION_STARS", "555"))
+SUBSCRIPTION_STARS = int(os.getenv("SUBSCRIPTION_STARS", "1111"))
 SUBSCRIPTION_DAYS = int(os.getenv("SUBSCRIPTION_DAYS", "30"))
 PAYLOAD_PREFIX = "bot_access_"
 
 # Оплата доступа через GRAM (нативный TON/GRAM в сети TON)
 GRAM_WALLET = os.getenv("GRAM_WALLET", "UQD9qii_hUBsLpDi1HRj3oMTcZmwoVRbMBhcMi_DZVJJcykT")
-SUBSCRIPTION_GRAM = float(os.getenv("SUBSCRIPTION_GRAM", "4.8"))
+SUBSCRIPTION_GRAM = float(os.getenv("SUBSCRIPTION_GRAM", "11"))
 GRAM_PAYMENT_TTL_MINUTES = int(os.getenv("GRAM_PAYMENT_TTL_MINUTES", "30"))
 TONCENTER_API_URL = "https://toncenter.com/api/v3/transactions"
 # ==================================================
