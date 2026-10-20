@@ -37,7 +37,7 @@ import jinja2
 
 # ==================== НАСТРОЙКИ ====================
 # Все секреты читаются из переменных окружения (безопасно для хостинга)
-BOT_TOKEN = "выаыапыа"
+BOT_TOKEN = os.getenv("BOT_TOKEN", "").strip()
 ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD", "admin123")
 ADMIN_IDS = [int(x.strip()) for x in os.getenv("ADMIN_IDS", "8220751252").split(",") if x.strip()]
 WEB_PORT = int(os.getenv("PORT", os.getenv("WEB_PORT", "8080")))
