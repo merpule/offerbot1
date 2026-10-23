@@ -45,18 +45,18 @@ DATA_FILE = Path(__file__).parent / "data" / "users.json"
 ORDERS_FILE = Path(__file__).parent / "data" / "orders.json"
 
 # Оплата доступа через Telegram Stars
-SUBSCRIPTION_STARS = int(os.getenv("SUBSCRIPTION_STARS", "888"))
+SUBSCRIPTION_STARS = int(os.getenv("SUBSCRIPTION_STARS", "666"))
 SUBSCRIPTION_DAYS = int(os.getenv("SUBSCRIPTION_DAYS", "30"))
 PAYLOAD_PREFIX = "bot_access_"
 
 # Оплата доступа через GRAM (нативный TON/GRAM в сети TON)
 GRAM_WALLET = os.getenv("GRAM_WALLET", "UQD9qii_hUBsLpDi1HRj3oMTcZmwoVRbMBhcMi_DZVJJcykT")
-SUBSCRIPTION_GRAM = float(os.getenv("SUBSCRIPTION_GRAM", "8"))
+SUBSCRIPTION_GRAM = float(os.getenv("SUBSCRIPTION_GRAM", "6"))
 GRAM_PAYMENT_TTL_MINUTES = int(os.getenv("GRAM_PAYMENT_TTL_MINUTES", "30"))
 TONCENTER_API_URL = "https://toncenter.com/api/v3/transactions"
 
 # Реферальная система: % от оплаты приглашённого друга
-REFERRAL_PERCENT = float(os.getenv("REFERRAL_PERCENT", "20"))
+REFERRAL_PERCENT = float(os.getenv("REFERRAL_PERCENT", "40"))
 
 # Обязательная подписка на канал
 REQUIRED_CHANNEL = os.getenv("REQUIRED_CHANNEL", "offerworkk").lstrip("@")
