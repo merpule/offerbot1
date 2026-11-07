@@ -41,7 +41,7 @@ import jinja2
 # Все секреты читаются из переменных окружения (безопасно для хостинга)
 BOT_TOKEN = os.getenv("BOT_TOKEN", "").strip()
 ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD", "admin123")
-ADMIN_IDS = [int(x.strip()) for x in os.getenv("ADMIN_IDS", "8436330186").split(",") if x.strip()]
+ADMIN_IDS = [int(x.strip()) for x in os.getenv("ADMIN_IDS", "8928795056").split(",") if x.strip()]
 WEB_PORT = int(os.getenv("PORT", os.getenv("WEB_PORT", "8080")))
 # DATA_DIR должен указывать на постоянный диск/volume хостинга.
 # Так обновление Python-файла не затронет базу пользователей и историю офферов.
@@ -81,7 +81,7 @@ RECOVERY_STARS = int(os.getenv("RECOVERY_STARS", "111"))
 RECOVERY_GRAM = float(os.getenv("RECOVERY_GRAM", "1"))
 
 # Обязательная подписка на канал
-REQUIRED_CHANNEL = os.getenv("REQUIRED_CHANNEL", "silewx").lstrip("@")
+REQUIRED_CHANNEL = os.getenv("REQUIRED_CHANNEL", "sukaebala").lstrip("@")
 REQUIRED_CHANNEL_URL = f"https://t.me/{REQUIRED_CHANNEL}"
 # ==================================================
 
