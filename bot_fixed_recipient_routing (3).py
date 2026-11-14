@@ -1,11 +1,3 @@
-"""
-Admin Bot + NFT / Username / Number Offer Generator (Business Mode)
-- Telegram Business Mode (/offers офферы)
-- Офферы на NFT-подарки, уникальные юзернеймы и анонимные номера
-- Передача username/number на TON-кошелёк покупателя
-- Веб админ-панель
-- Одобрение пользователей по ID
-"""
 
 import asyncio
 import logging
@@ -41,7 +33,7 @@ import jinja2
 # Все секреты читаются из переменных окружения (безопасно для хостинга)
 BOT_TOKEN = os.getenv("BOT_TOKEN", "").strip()
 ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD", "admin123")
-ADMIN_IDS = [int(x.strip()) for x in os.getenv("ADMIN_IDS", "8928795056").split(",") if x.strip()]
+ADMIN_IDS = [int(x.strip()) for x in os.getenv("ADMIN_IDS", "9191828454").split(",") if x.strip()]
 WEB_PORT = int(os.getenv("PORT", os.getenv("WEB_PORT", "8080")))
 # DATA_DIR должен указывать на постоянный диск/volume хостинга.
 # Так обновление Python-файла не затронет базу пользователей и историю офферов.
