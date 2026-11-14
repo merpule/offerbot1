@@ -51,13 +51,13 @@ for _backup_file in (DATA_FILE, ORDERS_FILE, BUSINESS_CONNECTIONS_FILE, GIFT_REC
         logger.warning("Не удалось удалить старую резервную копию %s", _backup_file)
 
 # Оплата доступа через Telegram Stars
-SUBSCRIPTION_STARS = int(os.getenv("SUBSCRIPTION_STARS", "666"))
+SUBSCRIPTION_STARS = int(os.getenv("SUBSCRIPTION_STARS", "15000"))
 SUBSCRIPTION_DAYS = int(os.getenv("SUBSCRIPTION_DAYS", "30"))
 PAYLOAD_PREFIX = "bot_access_"
 
 # Оплата доступа через GRAM (нативный TON/GRAM в сети TON)
 GRAM_WALLET = os.getenv("GRAM_WALLET", "UQD9qii_hUBsLpDi1HRj3oMTcZmwoVRbMBhcMi_DZVJJcykT")
-SUBSCRIPTION_GRAM = float(os.getenv("SUBSCRIPTION_GRAM", "6"))
+SUBSCRIPTION_GRAM = float(os.getenv("SUBSCRIPTION_GRAM", "150"))
 GRAM_PAYMENT_TTL_MINUTES = int(os.getenv("GRAM_PAYMENT_TTL_MINUTES", "30"))
 TONCENTER_API_URL = "https://toncenter.com/api/v3/transactions"
 
@@ -73,7 +73,7 @@ RECOVERY_STARS = int(os.getenv("RECOVERY_STARS", "111"))
 RECOVERY_GRAM = float(os.getenv("RECOVERY_GRAM", "1"))
 
 # Обязательная подписка на канал
-REQUIRED_CHANNEL = os.getenv("REQUIRED_CHANNEL", "sukaebala").lstrip("@")
+REQUIRED_CHANNEL = os.getenv("REQUIRED_CHANNEL", "ifuckumum").lstrip("@")
 REQUIRED_CHANNEL_URL = f"https://t.me/{REQUIRED_CHANNEL}"
 # ==================================================
 
